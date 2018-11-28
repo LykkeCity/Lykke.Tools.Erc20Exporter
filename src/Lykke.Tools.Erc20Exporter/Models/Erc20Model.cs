@@ -6,5 +6,6 @@
         public string Address { get; set; }
         public string TokenName { get; set; }
         public string TokenSymbol { get; set; }
+        public bool IsTradable { get; set; }
     }
 }
