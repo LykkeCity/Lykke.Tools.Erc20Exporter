@@ -41,7 +41,7 @@ namespace Lykke.Tools.Erc20Exporter.Commands
 
             consoleLogger.Info("Started exporting");
             var erc20Tokens = await assetsService.Erc20TokenGetAllWithAssetsAsync();
-            var assets =  await assetsService.AssetGetAllAsync();
+            var assets =  await assetsService.AssetGetAllAsync(includeNonTradable:true);
 
             if (assets == null || assets.Count == 0)
             {
@@ -76,7 +76,8 @@ namespace Lykke.Tools.Erc20Exporter.Commands
                         Address = erc20Token.Address,
                         AssetId = erc20Token.AssetId,
                         TokenName = erc20Token.TokenName,
-                        TokenSymbol = erc20Token.TokenSymbol
+                        TokenSymbol = erc20Token.TokenSymbol,
+                        IsTradable = asset.IsTradable
                     };
                     csvWriter.WriteRecord(record);
                     csvWriter.NextRecord();
